@@ -1,0 +1,26 @@
+CÓDIGOS PARA O EXPERIMENTO E ATITUDE
+
+##################################
+## PARA REPETIR UM CLIPE DE SOM ##
+##################################
+
+Vamos supor que os links para nossos arquivos de som estão em um arquivo xlsx, sob uma columa de nome "som". Portanto, "som" é o nome da variável que queremos repetir.
+
+Na mesma rotina que toca o seu componente de som, adicione um componente de código. Na tab Begin Routine, insira o código abaixo:
+
+def playSound():
+    beep = sound.Sound(som, secs=.3) ##aqui você define o nome som
+    beep.setVolume(1)
+    beep.play()
+    core.wait(.3)
+
+
+Na tab each frame, coloque o código abaixo para definir que tecla deverá ser pressionada para repetir o som:
+
+if event.getKeys(keyList=["tecla_a_sua_escolha"]):
+    playSound()
+
+Se quisermos que o som se repita após pressionarmos a tecla r, o código será
+
+if event.getKeys(keyList=["r"]):
+    playSound()

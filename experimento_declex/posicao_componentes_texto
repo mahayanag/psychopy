@@ -1,0 +1,18 @@
+DECISÃO LEXICAL
+
+componente de instrução
+
+	posição: (0, 0.2)
+	tamanho: 0.04
+
+componente de pressionar barra
+
+	posição: (0, -0.2)
+	tamanho: 0.04
+
+
+Componente de lembrança
+
+esquerda posição: (-0.3, -0.3)
+direita posição: (-0.3, 0.3)
+tamanho: 0.03

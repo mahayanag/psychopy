@@ -1,0 +1,13 @@
+Experimento de decisão lexical
+
+O participante vê uma série de palavras e deve decidir se elas são ou não palavras do português.
+
+Arquivos xlsx com instruções e itens de treino e experimentais. 
+
+Itens experimentais comparam o tempo de resposta de palavras longas e curtas.
+
+
+Arquivo instrucoes.doc com texto das instruções.
+
+
+Arquivo posicoes_componente_texto.txt com as posições e tamanho de fonte (em height) para os componentes de texto. 

@@ -1,0 +1,115 @@
+CÓDIGOS PARA SELFPACED READING
+
+#####################################
+## QUEBRANDO SENTENÇAS EM PALAVRAS ##
+#####################################
+
+FONTE: https://groups.google.com/g/psychopy-users/c/O7u_euN3Aps/m/OrnRMdiNAgAJ
+
+Crie duas rotinas, ROTINA1 e ROTINA2, e feche-as em um loop. Nesse loop, você indicará o arquivo de onde o programa puxará as sentenças experimentais.
+
+[início do loop 1] ROTINA1 --- ROTINA2 [fim do loop 1]
+
+ROTINA1 é uma rotina de interação em que o participante aperta uma barra de espaço para iniciar a leitura da frase. Sugiro um sinal de + no meio da tela, como um sinal de fixação (portanto, ROTINA1 tem dois componentes: um texto (o sinal de positivo) e uma resposta do tipo keyboard)
+
+Em ROTINA1, adicione um componente de código. Na tab de Begin Routine desse componente de código, digite o código abaixo (assumindo que a coluna em que a sentença está guardada se chama sentenca).
+
+word_list = sentenca.split()
+word_list.reverse()
+
+Esse código armazena a lista de palavras da sentença, separando os objetos da variável sentenca a cada caracter que indica espaço.
+
+Em seguida, crie um segundo loop que cincurde apenas ROTINA2. A estrutura fica assim:
+
+início do loop 1] ROTINA1 --- [início do loop 2] ROTINA1 [fim do loop 2] [fim do loop 1]
+
+Nesse segundo loop mais interno, coloque isso no campo nReps:
+
+len(word_list)
+
+Isso significa que o loop 2 vai rodar uma vez para cada palavra em cada sentença.
+
+Nessa ROTINA2, insira um estímulo do tipo texto e coloque o seguinte no campo 'text':
+
+$word_list.pop()
+
+Esse código pega cada palavra em ordem da lista que foi criada. O estímulo não deve ter tempo de acabar (deixe Duration em branco).
+
+Insira um componente de teclado e indique que a rotina se encerra com a barra de espaço.
+
+
+
+######################################
+## DANDO FEEDBACK PARA AS PERGUNTAS ##
+######################################
+
+Imagine que você tem uma rotina chamada PERGUNTA composta de um componente texto (com uma pergunta) e um componente do tipo keyboard, que registra a tecla apertada para responder e se ela está correta. Imagine que você chama esse componente keyboard de "resposta". Isso é importante, pois sempre que você gravar sua resposta a um estímulo, ela é gravada como correta (recebendo valor 1) ou incorreta (recebendo valor 0) em uma coluna de título nome_do_componente.corr. Nesse caso aqui, a coluna de resposta é resposta.corr.
+
+Agora você quer criar uma tela de feedback (acertou/errou) com base na resposta dada.
+
+Crie uma rotina depois da pergunta ou estímulo para o qual você quer dar feedback. Aqui, chamaremos essa rotina de FEEDBACK. Ela terá dois componentes que deverão aparecer NECESSARIAMENTE na seguinte ordem:
+
+1. Um componente de código
+2. Um componente de texto de duração igual ao tempo em que o feedback deve durar na tela. 
+
+No componente de código, na tab Begin Experiment, digite o seguinte código.
+
+mensagem = "" 
+
+Atenção: o nome mensagem aparecerá a seguir. Se você decidiu dar outro nome, lembre-se de usar esse mesmo nome nos códigos que seguem.
+
+Agora, na tab Begin Routine, digite o seguinte código
+
+if resposta.corr :
+    mensagem = "Correto!"
+    mensagem_color = "green"
+else:
+    mensagem = "Errado!"
+    mensagem_color = "red"
+
+O código 'if resposta.corr :' corresponde a 'if resposta.corr ==1', ou seja, "se a o conteúdo de resposta.corr for igual a 1". Note que "mensagem = "Correto!"" e "mensagem_color = "green"" estão recuados em relação ao comando if. Isso indica que esses comando estão identados a if (meio que subordinados a ele). Podemos lê-los assim:
+
+"se a o conteúdo de resp.corr for igual a 1, ENTÃO mensagem deve ser "Correto!", ENTÃO a cor de mensagem (mensagem_color) deve ser verde."
+
+Depois do if, definimos o else. O else indica o que deverá ocorrer caso a situação descrita em if não seja satisfeita. Podemos entender que ele significa algo como "Caso contrário": SE(if) resposta.corr é igual a 1, então faça isso e aquilo, CASO CONTRÁRIO(else), faça assim e assado. Nesse caso, diz que CASO CONTRÁRIO, a mensagem deve ser "Errado!", e na cor vermelha.
+
+Depois de feito isso, vá no componente de texto e, no campo 'Text', insira $mensagem para indicar que texto recuperar. Para indicar a cor do texto, preencha $mensagem_color no campo 'color'. Tanto Text quanto color devem ser ajustados para set every repeat.
+
+
+#######################################
+## ADICIONANDO INTERVALO DE DESCANSO ##
+#######################################
+
+Fonte: https://discourse.psychopy.org/t/how-to-pause-a-loop/4906/2
+
+Como último (SEMPRE ÚLTIMO!) componente do seu loop, depois do estímulo, feedback etc., insira uma nova rotina. Aqui, chamaremos esse componente de BREAK. Ele será formado por três componente.
+
+ 1. um componente de texto que conterá a msg de intervalo e duração infinita (algo como "Pare para descansar um pouco. Aperte BARRA DE ESPAÇO quando quiser continuar"). 
+ 2. um componente de resposta tipo keyboard para dizer que pressionando a barra ele encerrará o descanso e voltará ao loop.
+ 3. um componente de código customizado.
+
+Suponha que seu loop se chame loop_experimental. Nesse componente de código, na tab Begin Routine, digite o código abaixo se você quiser uma pausa após o décimo item:
+
+if loop_experimental.thisN != 9:
+    continueRoutine = False
+
+Com isso, BREAK vai rodar apenas quando 10 trials (contando a partir de 0) tiverem sido completados.
+
+
+########################################
+## MOSTRANDO APENAS ALGUMAS PERGUNTAS ##
+########################################
+
+Fonte: https://discourse.psychopy.org/t/self-paced-reading-task-with-yes-no-comprehension-questions/7050/6
+
+Crie uma variável nova na sua tabela de estímulos. Vamos chamar de followUp, mas você pode usar outro nome (só se lembre de repetir o nome dado ao escrever o código).
+
+Nessa coluna, atribua 1 para as perguntas que quer mostrar e 0 para as perguntas que não quer mostrar. Na rotina que lê a variável com as perguntas da sua tabela, adicione um componente de código customizável. Na tab de Begin Routine, coloque:
+
+if not followUp:
+    continueRoutine = False
+
+Isso significa que sempre que um 0 aparece na coluna followUp na sua tabela, a rotina que mostra a pergunta de compreensão vai terminar sem mostrar a pergunta.
+
+ATENÇÃO: se você tiver alguma outra rotina associada às respostas dadas a um estímulo (uma rotina de feedback, por exemplo), não se esqueça de colocar esse código também nessa rotina, ou o seu resultado (a mensagem de feedback, nesse exemplo) continuará aparecendo.
+

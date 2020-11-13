@@ -1,0 +1,13 @@
+Teste de atitude
+
+O participante escuta um clip sonoro com uma entervista e deve dar uma nota de 1 a 5 sobre características que associa àquele falante (educação e inteligência).
+
+Experimento inspirado no trabalho de Oushiro (2015), que controlou R em coda produzidos como tepe ou retroflexo.
+
+NOTA: Perceba que os arquivos de som disponíveis são todos idênticos e não correspondem aos áudios usados por Oushiro (2015). Esses áudios não estão disponíveis publicamente para cumprir exigências de ética em pesquisa e garantir o anonimato dos entrevistados que os produziram. Em todo caso, apesar dessa questão, o experimento deve rodar sem maiores problemas.
+
+Arquivos xlsx com instruções e itens experimentais (esse experimento não tem seção de treino).
+
+Pasta sounds com sons do experimento (veja NOTA acima).
+
+OUSHIRO, L. (2019) A computational approach for modeling the indexical field. In: Rev. Estud. Ling., Belo Horizonte, v. 27, n. 4, p. 1737-1786, 2019, doi: 10.17851/2237-2083.27.4.1737-1786 

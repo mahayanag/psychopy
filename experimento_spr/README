@@ -1,0 +1,12 @@
+Experimento de leitura autocadenciada
+
+O participante lê sentenças palavra por palavra e depois responde a uma pergunta de sim ou não sobre algumas delas.
+
+Arquivos xlsx com instruções e itens de treino e experimentais. 
+
+Arquivo codes_spr.txt com informações sobre o código para elaborar o experimento. Inclui códigos para quebrar sentenças em palavras, dar feedback sobre perguntas e inserir pausa no meio do experimento.
+
+
+Estímulos experimentais e fillers nesse experimento são de Souza-Filho (em preparação).
+
+SOUZA-FILHO, Neemias Silva de. Mecanismos de antecipação lexical em português brasileiro: abordando questões metodológicas. Dissertação de Mestrado em preparação. Universidade Federal do Rio Grande do Norte.
